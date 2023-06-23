@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Каталог брендов</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h2 {
+            margin-bottom: 10px;
+        }
+
+        ul {
+            margin-top: 0;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<h1>Список Брендов:</h1>
+    {% for brand in brands %}
+    <h2>{{ brand.name }}</h2>
+    <ul>
+        {% for category in brand.categories.all %}
+    <li><a href="{% url 'catalog:category_detail' brand_id=brand.id category_id=category.id %}">{{ category.name }}</a></li>
+        {% endfor %}
+    </ul>
+    {% endfor %}
+</body>
+</html>
